@@ -1,4 +1,4 @@
-#bufferpool[![Build Status](https://secure.travis-ci.org/jzelinskie/bufferpool.png)](http://travis-ci.org/jzelinskie/bufferpool)
+#bufferpool [![Build Status](https://secure.travis-ci.org/pushrax/bufferpool.png)](http://travis-ci.org/pushrax/bufferpool)
 
 ## description
 
@@ -6,4 +6,4 @@ Bufferpool implements a thread-safe pool of reusable, same-sized byte.Buffers. T
 
 ## docs
 
-[GoDoc](http://godoc.org/github.com/jzelinskie/bufferpool)
+[GoDoc](http://godoc.org/github.com/pushrax/bufferpool)

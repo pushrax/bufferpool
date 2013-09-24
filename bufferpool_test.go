@@ -30,12 +30,16 @@ func TestTakeFromFilled(t *testing.T) {
 }
 
 func ExampleNew() {
-	catBuffer := bytes.NewBuffer([]byte("cat"))
-	bp := bufferpool.New(10, catBuffer.Len())
-	bp.Give(catBuffer) // An error is returned, but not neccessary to check
-	reusedBuffer := bp.Take()
-	reusedBuffer.Write([]byte("dog"))
-	fmt.Println(reusedBuffer)
+	bp := bufferpool.New(10, 255)
+
+	dogBuffer := bp.Take()
+	dogBuffer.writeString("Dog!")
+	bp.Give(dogBuffer)
+
+	catBuffer := bp.Take() // dogBuffer is reused and reset.
+	catBuffer.WriteString("Cat!")
+
+	fmt.Println(catBuffer)
 	// Output:
-	// dog
+	// Cat!
 }

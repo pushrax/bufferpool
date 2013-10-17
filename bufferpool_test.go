@@ -33,7 +33,7 @@ func ExampleNew() {
 	bp := bufferpool.New(10, 255)
 
 	dogBuffer := bp.Take()
-	dogBuffer.writeString("Dog!")
+	dogBuffer.WriteString("Dog!")
 	bp.Give(dogBuffer)
 
 	catBuffer := bp.Take() // dogBuffer is reused and reset.

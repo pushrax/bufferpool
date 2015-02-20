@@ -22,10 +22,18 @@ func TestTakeFromEmpty(t *testing.T) {
 
 func TestTakeFromFilled(t *testing.T) {
 	bp := bufferpool.New(1, 1)
-	bp.Give(bytes.NewBuffer([]byte("X")))
+
+	origBuf := bytes.NewBuffer([]byte("X"))
+	bp.Give(origBuf)
+
 	reusedBuf := bp.Take()
 	if !bytes.Equal(reusedBuf.Bytes(), []byte("")) {
 		t.Fatalf("Buffer from filled bufferpool was recycled incorrectly.")
+	}
+
+	// Compare addresses of the first element in the underlying slice.
+	if &origBuf.Bytes()[:1][0] != &reusedBuf.Bytes()[:1][0] {
+		t.Fatalf("Recycled buffer points at different address.")
 	}
 }
 
